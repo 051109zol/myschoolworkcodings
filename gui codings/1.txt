@@ -1,0 +1,1408 @@
+codings = 
+1.Basics (packing/griding) (1.packing.py)
+from tkinter import *
+
+root = Tk()
+
+# Creating a label widget
+myLabel = Label(root, text="Hello World!")
+
+# Pack it
+myLabel.pack()
+
+
+root.mainloop()
+/ 
+from tkinter import *(2.grid.py)
+
+root = Tk()
+
+# Creating a label widget
+myLabel1 = Label(root, text="Hello World!")
+myLabel2 = Label(root, text="My name is Jeff")
+
+# grid
+myLabel1.grid(row=0, column=0)
+myLabel2.grid(row=1, column=0)
+
+root.mainloop()
+
+***********************************************************************************************************************************************************************
+2. Making buttons (3. Creating button.py)
+from tkinter import *
+
+root = Tk()
+
+myButton = Button(root, text= "Click Me !")
+myButton.pack ()
+*** Can click
+/
+myButton = Button(root, text= "Click Me !", state=DISABLED)
+myButton.pack ()
+*** Cannot click
+/
+myButton = Button(root, text= "Click Me !", padx=50)
+myButton.pack ()
+*** Change size ( padx = x-axis in cartesian plane / pady = y-axis in cartesian plane)
+/ 
+def myClick():
+    myLabel = Label(root, text="Look! I clicked a Button!!")
+    myLabel.pack()
+
+myButton = Button(root, text= "Click Me !", padx=50, pady=75, command=myClick)
+myButton.pack ()
+*** Showing something after clicking button
+/ 
+def myClick():
+    myLabel = Label(root, text="Look! I clicked a Button!!")
+    myLabel.pack()
+
+myButton = Button(root, text= "Click Me !", padx=50, pady=75, command=myClick, fg="blue", bg="yellow")
+myButton.pack ()
+*** fg (foreground) = changing the text in button colour
+*** bg (background) = changing colour of the button background
+
+root.mainloop()
+
+***********************************************************************************************************************************************************************
+3. Input something (4. Creating input things.py)
+from tkinter import *
+
+root = Tk()
+
+#Making the input box
+e = Entry(root, width=50, borderwidth=10, fg = "blue", bg = "yellow")
+e.pack()
+
+#Make things we write in input displayed in the output (e.get() = things that you write in the input box)
+def myClick():
+    hello = "Hello" + e.get()
+    myLabel = Label(root, text=hello)
+    myLabel.pack()
+
+myButton = Button(root, text= "Enter your Name", padx=50, pady=75, command=myClick, fg="blue", bg="yellow")
+myButton.pack ()
+
+root.mainloop()
+
+***********************************************************************************************************************************************************************
+4. Making calculator (your calculator.py)
+from tkinter import *
+
+root = Tk()
+root.title("Simple Calculator")
+
+e = Entry(root, width=40, borderwidth=20, fg = "blue", bg = "yellow")
+e.grid(row=0, column=0, columnspan=3, padx=20, pady=20)
+
+#e.insert(0, "Enter the number = ")
+
+def button_click(number):
+    #e.delete (0, END)
+    current = e.get()
+    e.delete(0, END)
+    e.insert(0, str(current) + str(number))
+
+def button_clear():
+    e.delete(0, END)
+
+def button_add():
+    first_number = e.get()
+    global f_num
+    global math
+    math = "addition"
+    f_num = int(first_number)
+    e.delete (0, END)
+
+def button_equal():
+    second_number = e.get()
+    e.delete (0, END)
+
+    if math == "addition":
+        e.insert (0, f_num + int(second_number))
+
+    if math == "substraction":
+        e.insert (0, f_num - int(second_number))
+
+    if math == "multiplication":
+        e.insert (0, f_num * int(second_number))
+
+    if math == "division":
+        e.insert (0, f_num / int(second_number))
+    
+def button_minus():
+    first_number = e.get()
+    global f_num
+    global math
+    math = "substraction"
+    f_num = int(first_number)
+    e.delete (0, END)
+
+def button_multiply():
+    first_number = e.get()
+    global f_num
+    global math
+    math = "multiplication"
+    f_num = int(first_number)
+    e.delete (0, END)
+
+def button_divide():
+    first_number = e.get()
+    global f_num
+    global math
+    math = "division"
+    f_num = int(first_number)
+    e.delete (0, END)
+    
+# Define Buttons
+
+button_1 = Button(root, text= "1", padx = 40, pady = 20, command=lambda: button_click(1), fg = "yellow", bg = "green")
+button_2 = Button(root, text= "2", padx = 40, pady = 20, command=lambda: button_click(2), fg = "yellow", bg = "green")
+button_3 = Button(root, text= "3", padx = 40, pady = 20, command=lambda: button_click(3), fg = "yellow", bg = "green")
+button_4 = Button(root, text= "4", padx = 40, pady = 20, command=lambda: button_click(4), fg = "yellow", bg = "green")
+button_5 = Button(root, text= "5", padx = 40, pady = 20, command=lambda: button_click(5), fg = "yellow", bg = "green")
+button_6 = Button(root, text= "6", padx = 40, pady = 20, command=lambda: button_click(6), fg = "yellow", bg = "green")
+button_7 = Button(root, text= "7", padx = 40, pady = 20, command=lambda: button_click(7), fg = "yellow", bg = "green")
+button_8 = Button(root, text= "8", padx = 40, pady = 20, command=lambda: button_click(8), fg = "yellow", bg = "green")
+button_9 = Button(root, text= "9", padx = 40, pady = 20, command=lambda: button_click(9), fg = "yellow", bg = "green")
+button_0 = Button(root, text= "0", padx = 40, pady = 20, command=lambda: button_click(0), fg = "yellow", bg = "green")
+button_add = Button(root, text= "+", padx = 40, pady = 20, command = button_add, fg = "yellow", bg = "green")
+button_equal = Button(root, text= "=", padx = 95, pady = 20, command = button_equal, fg = "yellow", bg = "green")
+button_clear = Button(root, text= "Clear", padx = 85, pady = 20, command = button_clear, fg = "yellow", bg = "green")
+
+button_minus = Button(root, text= "-", padx = 41, pady = 20, command = button_minus, fg = "yellow", bg = "green")
+button_multiply = Button(root, text= "x", padx = 42, pady = 20, command = button_multiply, fg = "yellow", bg = "green")
+button_divide = Button(root, text= "÷", padx = 42, pady = 20, command = button_divide, fg = "yellow", bg = "green")
+
+# Put the button on the screen
+
+button_1.grid(row = 3, column = 0)
+button_2.grid(row = 3, column = 1)
+button_3.grid(row = 3, column = 2)
+
+button_4.grid(row = 2, column = 0)
+button_5.grid(row = 2, column = 1)
+button_6.grid(row = 2, column = 2)
+
+button_7.grid(row = 1, column = 0)
+button_8.grid(row = 1, column = 1)
+button_9.grid(row = 1, column = 2)
+
+button_0.grid(row = 4, column = 0)
+button_clear.grid(row = 4, column = 1, columnspan=2)
+button_add.grid(row = 5, column = 0)
+button_equal.grid(row = 5, column = 1, columnspan=2)
+
+button_minus.grid(row = 6, column = 0)
+button_multiply.grid(row = 6, column = 1)
+button_divide.grid(row = 6, column = 2)
+
+root.mainloop()
+
+***********************************************************************************************************************************************************************
+5. Making icons, images, exit button for .py file (Image appear after spending many hours of delete and installing phyton and some Indians tech video yes =)) (use icons, images, exit button.py)
+from tkinter import *
+from PIL import ImageTk, Image
+
+root = Tk()
+root.title ("Using Icons Images, and Exit Buttons")
+root.iconbitmap('C:/Users/user/Desktop/Zaid/hw/ask/3011/gui codings/pewds_qmL_icon.ico')
+
+my_img = ImageTk.PhotoImage(Image.open("anomaly1.jpg"))
+my_label = Label(image = my_img)
+my_label.pack()
+
+button_quit = Button (root, text = "End Program", fg="blue", bg="yellow", padx=50, pady=75, command = root.quit)
+button_quit.pack()
+
+root.mainloop()
+
+***********************************************************************************************************************************************************************
+6. Building image app viewer (app image viewer.py)
+from tkinter import *
+from PIL import ImageTk, Image
+
+root = Tk()
+root.title ("Using Icons Images, and Exit Buttons")
+root.iconbitmap("pewds_qmL_icon.ico")
+
+my_img1 = ImageTk.PhotoImage(Image.open("gamba/anomaly1.jpg"))
+my_img2= ImageTk.PhotoImage(Image.open("gamba/anomaly 2.jpg"))
+my_img3 = ImageTk.PhotoImage(Image.open("gamba/anomaly 3.jpg"))
+my_img4 = ImageTk.PhotoImage(Image.open("gamba/ANOMALY.jpg"))
+my_img5 = ImageTk.PhotoImage(Image.open("gamba/big smoke.jpg"))
+my_img6= ImageTk.PhotoImage(Image.open("gamba/SHREK.jpg"))
+my_img7 = ImageTk.PhotoImage(Image.open("gamba/STING AKU YAHOO YAHOO.jpg"))
+
+image_list = [my_img1, my_img2, my_img3, my_img4, my_img5, my_img6, my_img7]
+
+my_label = Label(image = my_img1)
+my_label.grid ( row = 0, column = 0, columnspan = 3 )
+
+def forward (image_number):
+    global my_label
+    global button_forward
+    global button_back
+    
+    my_label.grid_forget()
+    my_label = Label ( image = image_list [image_number-1] )
+    button_forward = Button (root, text = ">>", fg="blue", bg="yellow", padx=5, pady=10, command = lambda: forward(image_number+1))
+    button_back = Button (root, text = "<<", fg="blue", bg="yellow", padx=5, pady=10, command = lambda: back(image_number-1))
+
+    if image_number == 7 :
+        button_forward = Button (root, text = ">>", fg="blue", bg="yellow", padx=5, pady=10, state = DISABLED)
+    
+    my_label.grid ( row = 0, column = 0, columnspan = 3 )
+    button_back.grid ( row = 1, column = 0 )
+    button_forward.grid ( row = 1, column = 2 )
+
+def back (image_number):
+    global my_label
+    global button_forward
+    global button_back
+
+    my_label.grid_forget()
+    my_label = Label ( image = image_list [image_number-1] )
+    button_forward = Button (root, text = ">>", fg="blue", bg="yellow", padx=5, pady=10, command = lambda: forward(image_number+1))
+    button_back = Button (root, text = "<<", fg="blue", bg="yellow", padx=5, pady=10, command = lambda: back(image_number-1))
+    
+    if image_number == 1 :
+        button_back = Button (root, text = "<<", fg="blue", bg="yellow", padx=5, pady=10, state = DISABLED)
+        
+    my_label.grid ( row = 0, column = 0, columnspan = 3 )
+    button_back.grid ( row = 1, column = 0 )
+    button_forward.grid ( row = 1, column = 2 )
+
+button_back = Button (root, text = "<<", fg="blue", bg="yellow", padx=5, pady=10, command = back, state = DISABLED)
+button_forward = Button (root, text = ">>", fg="blue", bg="yellow", padx=5, pady=10, command = lambda: forward(2)) 
+button_quit = Button (root, text = "End Program", fg="blue", bg="yellow", padx=5, pady=10, command = root.quit)
+
+button_back.grid ( row = 1, column = 0 )
+button_quit.grid ( row = 1, column = 1 )
+button_forward.grid ( row = 1, column = 2 )
+
+root.mainloop()
+
+***********************************************************************************************************************************************************************
+7. Adding status bar. (adding status bar.py) 
+from tkinter import *
+from PIL import ImageTk, Image
+
+root = Tk()
+root.title ("Using Icons Images, and Exit Buttons")
+root.iconbitmap("pewds_qmL_icon.ico")
+
+my_img1 = ImageTk.PhotoImage(Image.open("gamba/anomaly1.jpg"))
+my_img2= ImageTk.PhotoImage(Image.open("gamba/anomaly 2.jpg"))
+my_img3 = ImageTk.PhotoImage(Image.open("gamba/anomaly 3.jpg"))
+my_img4 = ImageTk.PhotoImage(Image.open("gamba/ANOMALY.jpg"))
+my_img5 = ImageTk.PhotoImage(Image.open("gamba/big smoke.jpg"))
+my_img6= ImageTk.PhotoImage(Image.open("gamba/SHREK.jpg"))
+my_img7 = ImageTk.PhotoImage(Image.open("gamba/STING AKU YAHOO YAHOO.jpg"))
+
+image_list = [my_img1, my_img2, my_img3, my_img4, my_img5, my_img6, my_img7]
+
+status = Label (root, text = " Image 1 of " + str(len(image_list)), bd = 1, relief = SUNKEN, anchor = E )
+
+my_label = Label(image = my_img1)
+my_label.grid ( row = 0, column = 0, columnspan = 3 )
+
+def forward (image_number):
+    global my_label
+    global button_forward
+    global button_back
+    
+    my_label.grid_forget()
+    my_label = Label ( image = image_list [image_number-1] )
+    button_forward = Button (root, text = ">>", fg="blue", bg="yellow", padx=5, pady=10, command = lambda: forward(image_number+1))
+    button_back = Button (root, text = "<<", fg="blue", bg="yellow", padx=5, pady=10, command = lambda: back(image_number-1))
+
+    if image_number == 7 :
+        button_forward = Button (root, text = ">>", fg="blue", bg="yellow", padx=5, pady=10, state = DISABLED)
+    
+    my_label.grid ( row = 0, column = 0, columnspan = 3 )
+    button_back.grid ( row = 1, column = 0 )
+    button_forward.grid ( row = 1, column = 2 )
+
+    status = Label (root, text = " Image " + str(image_number) + " of " + str(len(image_list)), bd = 1, relief = SUNKEN, anchor = E )
+    status.grid ( row = 2, column = 0, columnspan = 3, sticky = W+E )
+    
+def back (image_number):
+    global my_label
+    global button_forward
+    global button_back
+
+    my_label.grid_forget()
+    my_label = Label ( image = image_list [image_number-1] )
+    button_forward = Button (root, text = ">>", fg="blue", bg="yellow", padx=5, pady=10, command = lambda: forward(image_number+1))
+    button_back = Button (root, text = "<<", fg="blue", bg="yellow", padx=5, pady=10, command = lambda: back(image_number-1))
+    
+    if image_number == 1 :
+        button_back = Button (root, text = "<<", fg="blue", bg="yellow", padx=5, pady=10, state = DISABLED)
+        
+    my_label.grid ( row = 0, column = 0, columnspan = 3 )
+    button_back.grid ( row = 1, column = 0 )
+    button_forward.grid ( row = 1, column = 2 )
+
+    #Update status bar
+    status = Label (root, text = " Image " + str(image_number) + " of " + str(len(image_list)), bd = 1, relief = SUNKEN, anchor = E )
+    status.grid ( row = 2, column = 0, columnspan = 3, sticky = W+E )
+
+button_back = Button (root, text = "<<", fg="blue", bg="yellow", padx=5, pady=10, command = back, state = DISABLED)
+button_forward = Button (root, text = ">>", fg="blue", bg="yellow", padx=5, pady=10, command = lambda: forward(2)) 
+button_quit = Button (root, text = "End Program", fg="blue", bg="yellow", padx=5, pady=10, command = root.quit)
+
+button_back.grid ( row = 1, column = 0 )
+button_quit.grid ( row = 1, column = 1 )
+button_forward.grid ( row = 1, column = 2 , pady = 5)
+status.grid ( row = 2, column = 0, columnspan = 3, sticky = W+E )
+
+root.mainloop()
+
+***********************************************************************************************************************************************************************
+8. adding frame (add frame.py)
+from tkinter import *
+from PIL import ImageTk, Image
+
+root = Tk ()
+root.title ("We do coding yes")
+root.iconbitmap('C:/Users/user/Desktop/Zaid/hw/ask/3011/gui codings/pewds_qmL_icon.ico')
+
+frame = LabelFrame(root, text = "ヘロ エブライオン", fg="blue", bg="yellow", padx = 50, pady = 50)
+frame.pack (padx = 25, pady = 25)
+
+b = Button (frame, text = "アニク")
+b2 = Button (frame, text = "アケー")
+b.grid(row = 0, column = 0)
+b2.grid(row = 1, column = 0)
+
+root.mainloop()
+
+***********************************************************************************************************************************************************************
+9. Radio button (radio button.py)
+from tkinter import *
+from PIL import ImageTk, Image
+
+root = Tk ()
+root.title ("We do coding yes")
+root.iconbitmap('C:/Users/user/Desktop/Zaid/hw/ask/3011/gui codings/pewds_qmL_icon.ico')
+
+#pizza= StringVar()
+#pizza.set("Peperoni")
+
+MODES = [
+    ("Peperoni", "Peperoni"),
+    ("Cheese", "Cheese"),
+    ("Mushroom", "Mushroom"),
+    ("Onion", "Onion"),
+]
+
+pizza = StringVar()
+pizza.set("Peperoni")
+
+for text, mode in MODES :
+    Radiobutton (root, text = text, variable=pizza, value=mode).pack(anchor=W)
+
+def clicked(value):
+    myLabel1 = Label(root, text = value)
+    myLabel1.pack()
+
+#Radiobutton(root, text = "Option 1", variable=r, value = "1", command = lambda : clicked (r.get())).pack()
+#Radiobutton(root, text = "Option2", variable=r, value = "2", command = lambda : clicked (r.get())).pack()
+
+#myLabel1 = Label(root, text = pizza.get()).pack()
+
+myButton = Button(root, text = "Click Me!", command = lambda : clicked (pizza.get())).pack()
+
+root.mainloop()
+
+***********************************************************************************************************************************************************************
+10. Message box (message box.py)
+from tkinter import *
+from PIL import ImageTk, Image
+from tkinter import messagebox
+
+root = Tk ()
+root.title ("We do coding yes")
+root.iconbitmap('C:/Users/user/Desktop/Zaid/hw/ask/3011/gui codings/pewds_qmL_icon.ico')
+
+# showinfo, showwarning, showerror, askquestion, askokcancel, askyesno
+
+def popup():
+    response = messagebox.showinfo("This is my Popup!", "Hellow world")
+    Label (root, text=response).pack()
+    #if response == "yes":
+    #    Label (root, text = "Yes you click").pack()
+    #else :
+    #    Label (root, text = "No you click").pack()
+
+Button(root, text = "POPUP", command = popup).pack()
+
+root.mainloop()
+***********************************************************************************************************************************************************************
+11. create new window (create new window.py)
+from tkinter import *
+from PIL import ImageTk, Image
+
+root = Tk ()
+root.title ("WEWEWEW")
+root.iconbitmap("pewds_qmL_icon.ico")
+
+def open ():
+    global my_img
+    top = Toplevel()
+    top.title ("miniOn")
+    top.iconbitmap("pewds_qmL_icon.ico")
+    my_img = ImageTk.PhotoImage(Image.open("gamba/anomaly1.jpg"))
+    my_label = Label (top, image=my_img).pack()
+    btn2 = Button (top, text = "Bye Minion!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", command = top.destroy).pack()
+
+btn = Button(root, text = "Click me to see minion!!!!!!", command = open).pack()
+
+root.mainloop()
+
+***********************************************************************************************************************************************************************
+12. open files dialog box (open files dialog box.py)
+from tkinter import *
+from PIL import ImageTk, Image
+from tkinter import filedialog
+
+root = Tk ()
+root.title ("We do coding yes")
+root.iconbitmap("pewds_qmL_icon.ico")
+
+#root.filename = filedialog.askopenfilename(initialdir = "/gui codings/gamba", title = "Select a file", filetypes = (("JPG FILES", "*.jpg"), ("ALL FILES", "*.*")))
+#my_label = Label (root, text = root.filename).pack()
+#my_image = ImageTk.PhotoImage (Image.open(root.filename))
+#my_image_label = Label (image = my_image).pack()
+
+def open():
+    global my_image
+    root.filename = filedialog.askopenfilename(initialdir = "/gui codings/gamba", title = "Select a file", filetypes = (("JPG FILES", "*.jpg"), ("ALL FILES", "*.*")))
+    my_label = Label (root, text = root.filename).pack()
+    my_image = ImageTk.PhotoImage (Image.open(root.filename))
+    my_image_label = Label (image = my_image).pack()
+    
+my_btn = Button (root, text = "Open File", command = open).pack()
+
+root.mainloop()
+
+***********************************************************************************************************************************************************************
+13. Sliders (slider.py)
+from tkinter import *
+from PIL import ImageTk, Image
+
+root = Tk ()
+root.title ("We do coding yes")
+root.iconbitmap("pewds_qmL_icon.ico")
+root.geometry("400x400")
+
+vertical = Scale (root, from_=0, to=400)
+vertical.pack()
+
+def slide():
+    my_label = Label(root, text = horizontal.get()).pack()
+    root.geometry(str(horizontal.get()) + "x" + str(vertical.get()))   
+
+horizontal = Scale (root, from_=0, to=400, orient = HORIZONTAL)
+horizontal.pack()
+
+my_label = Label(root, text = horizontal.get()).pack()
+
+my_btn = Button (root, text = "Click Me!", command = slide). pack()
+
+root.mainloop()
+
+***********************************************************************************************************************************************************************
+14. checkboxes (checkboxes.py)
+from tkinter import *
+from PIL import ImageTk, Image
+
+root = Tk ()
+root.title ("We do coding yes")
+root.iconbitmap("pewds_qmL_icon.ico")
+root.geometry("400x400")
+
+# Drop down boxes
+
+def show():
+    myLabel = Label ( root, text = clicked.get()).pack()
+    
+option = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+]
+
+clicked = StringVar()
+clicked.set (option[0])
+
+drop = OptionMenu (root, clicked, *option)
+drop.pack()
+
+myButton = Button ( root, text = "Show Selection", command = show).pack()
+
+root.mainloop()
+
+***********************************************************************************************************************************************************************
+15. using database (using database.py) (Basic database)
+from tkinter import *
+from PIL import ImageTk, Image
+import sqlite3
+
+root = Tk ()
+root.title ("We do coding yes")
+root.iconbitmap("pewds_qmL_icon.ico")
+root.geometry("400x400")
+
+# Databases
+
+# Create a database or connect to one
+conn = sqlite3.connect('address_book.db')
+
+# Create cursor
+c = conn.cursor()
+
+# Create table
+c.execute(""" CREATE TABLE addresses (
+            first_name text,
+            last_name text,
+            address text,
+            city text,
+            state text,
+            zipcode integer
+            )""")
+
+# Commit Changes
+conn.commit()
+
+# Close Connection
+conn.close()
+
+root.mainloop()
+
+***********************************************************************************************************************************************************************
+16. GUI for database (GUI for database.py)
+from tkinter import *
+from PIL import ImageTk, Image
+import sqlite3
+
+root = Tk ()
+root.title ("We do coding yes")
+root.iconbitmap("pewds_qmL_icon.ico")
+root.geometry("400x400")
+
+# Databases
+
+# Create a database or connect to one
+conn = sqlite3.connect('address_book.db')
+
+# Create cursor
+c = conn.cursor()
+
+# Create table
+'''
+c.execute(""" CREATE TABLE addresses (
+            first_name text,
+            last_name text,
+            address text,
+            city text,
+            state text,
+            zipcode integer
+            )""")
+'''
+
+# Create submit function for database
+def submit():
+    # Create a database or connect to one
+    conn = sqlite3.connect('address_book.db')
+
+    # Create cursor
+    c = conn.cursor()
+
+    # Insert into table
+    c.execute("INSERT INTO addresses VALUES (:f_name, :l_name, :address, :city, :state, :zipcode)",
+                {
+                    'f_name' : f_name.get(),
+                    'l_name' : l_name.get(),
+                    'address' : address.get(),
+                    'city' : city.get(),
+                    'state' : state.get(),
+                    'zipcode' : zipcode.get()
+                })
+    
+    # Commit Changes
+    conn.commit()
+
+    # Close Connection
+    conn.close()
+
+    # Clear the Text Boxes
+    f_name.delete (0, END)
+    l_name.delete (0, END)
+    address.delete (0, END)
+    city.delete (0, END)
+    state.delete (0, END)
+    zipcode.delete (0, END)
+
+# Create query func
+def query():
+    # Create a database or connect to one
+    conn = sqlite3.connect('address_book.db')
+
+    # Create cursor
+    c = conn.cursor()
+
+    #Query the database (* = all, oid = primary key (ex = when want to delete specific data that same name withother data))
+    c.execute ("SELECT *,oid FROM addresses")
+    records = c.fetchall()
+    # print (records)
+
+    # Looping Thru results
+    print_records = ' ' 
+    for record in records :
+        print_records += str(record) + "\n"
+
+    query_label = Label(root, text = print_records)
+    query_label.grid(row=8, column= 0, columnspan = 2)
+    
+    # Commit Changes
+    conn.commit()
+
+    # Close Connection
+    conn.close()
+
+# Create textbox
+# Entry = create text box
+f_name = Entry (root, width = 30)
+f_name.grid( row = 0, column = 1, padx = 20)
+
+l_name = Entry (root, width = 30)
+l_name.grid( row = 1, column = 1, padx = 20)
+
+address = Entry (root, width = 30)
+address.grid( row = 2, column = 1, padx = 20)
+
+city = Entry (root, width = 30)
+city.grid( row = 3, column = 1, padx = 20)
+
+state = Entry (root, width = 30)
+state.grid( row = 4, column = 1, padx = 20)
+
+zipcode = Entry (root, width = 30)
+zipcode.grid( row = 5, column = 1, padx = 20)
+
+# Create text label
+f_name_label = Label (root, text = "First Name")
+f_name_label.grid (row = 0, column = 0)
+
+l_name_label = Label (root, text = "Last Name")
+l_name_label.grid (row = 1, column = 0)
+
+address_label = Label (root, text = "Address")
+address_label.grid (row = 2, column = 0)
+
+city_label = Label (root, text = "City")
+city_label.grid (row = 3, column = 0)
+
+state_label = Label (root, text = "State")
+state_label.grid (row = 4, column = 0)
+
+zipcode_label = Label (root, text = "Zipcode")
+zipcode_label.grid (row = 5, column = 0)
+
+# Create Submit Button
+# ipadx = strech the button
+submit_button = Button (root, text = "Add record to the database", command = submit)
+submit_button.grid(row = 6, column = 0, columnspan = 2, pady = 10, padx =10, ipadx = 100)
+
+# Create a Query Button
+query_btn = Button(root, text = "Show Records", command = query)
+query_btn.grid(row = 7, column =0, columnspan = 2, pady=10, padx=10, ipadx=137)
+
+# Commit Changes
+conn.commit()
+
+# Close Connection
+conn.close()
+
+root.mainloop()
+
+***********************************************************************************************************************************************************************
+17. Delete A Record From our database (Delete data from database.py)
+from tkinter import *
+from PIL import ImageTk, Image
+import sqlite3
+
+root = Tk ()
+root.title ("We do coding yes")
+root.iconbitmap("pewds_qmL_icon.ico")
+root.geometry("400x500")
+
+# Databases
+
+# Create a database or connect to one
+conn = sqlite3.connect('address_book.db')
+
+# Create cursor
+c = conn.cursor()
+
+# Create table
+'''
+c.execute(""" CREATE TABLE addresses (
+            first_name text,
+            last_name text,
+            address text,
+            city text,
+            state text,
+            zipcode integer
+            )""")
+'''
+
+# Create function to Delete A record
+def delete():
+     # Create a database or connect to one
+    conn = sqlite3.connect('address_book.db')
+
+    # Create cursor
+    c = conn.cursor()
+
+    # Delete a record
+    c.execute("DELETE from addresses WHERE oid=" + delete_box.get())
+    
+    # Commit Changes
+    conn.commit()
+
+    # Close Connection
+    conn.close()
+    
+# Create submit function for database
+def submit():
+    # Create a database or connect to one
+    conn = sqlite3.connect('address_book.db')
+
+    # Create cursor
+    c = conn.cursor()
+
+    # Insert into table
+    c.execute("INSERT INTO addresses VALUES (:f_name, :l_name, :address, :city, :state, :zipcode)",
+                {
+                    'f_name' : f_name.get(),
+                    'l_name' : l_name.get(),
+                    'address' : address.get(),
+                    'city' : city.get(),
+                    'state' : state.get(),
+                    'zipcode' : zipcode.get()
+                })
+    
+    # Commit Changes
+    conn.commit()
+
+    # Close Connection
+    conn.close()
+
+    # Clear the Text Boxes
+    f_name.delete (0, END)
+    l_name.delete (0, END)
+    address.delete (0, END)
+    city.delete (0, END)
+    state.delete (0, END)
+    zipcode.delete (0, END)
+
+# Create query func
+def query():
+    # Create a database or connect to one
+    conn = sqlite3.connect('address_book.db')
+
+    # Create cursor
+    c = conn.cursor()
+
+    #Query the database (* = all, oid = primary key (ex = when want to delete specific data that same name withother data))
+    c.execute ("SELECT *,oid FROM addresses")
+    records = c.fetchall()
+    # print (records)
+
+    # Looping Thru results
+    print_records = ' ' 
+    for record in records :
+        print_records += str(record[0]) + " " + str(record[1]) + " " + "\t" + str(record[6]) + "\n" 
+
+    query_label = Label(root, text = print_records)
+    query_label.grid(row=11, column= 0, columnspan = 2)
+    
+    # Commit Changes
+    conn.commit()
+
+    # Close Connection
+    conn.close()
+
+# Create textbox
+# Entry = create text box
+f_name = Entry (root, width = 30)
+f_name.grid( row = 0, column = 1, padx = 20, pady = (10, 0))
+
+l_name = Entry (root, width = 30)
+l_name.grid( row = 1, column = 1, padx = 20, pady = (10, 0))
+
+address = Entry (root, width = 30)
+address.grid( row = 2, column = 1, padx = 20, pady = (10, 0))
+
+city = Entry (root, width = 30)
+city.grid( row = 3, column = 1, padx = 20, pady = (10, 0))
+
+state = Entry (root, width = 30)
+state.grid( row = 4, column = 1, padx = 20, pady = (10, 5))
+
+zipcode = Entry (root, width = 30)
+zipcode.grid( row = 5, column = 1, padx = 20, pady = (10, 0))
+
+delete_box = Entry (root, width = 30)
+delete_box. grid (row = 9, column = 1, pady = 5) 
+
+# Create text label
+f_name_label = Label (root, text = "First Name")
+f_name_label.grid (row = 0, column = 0, pady = (10, 0))
+
+l_name_label = Label (root, text = "Last Name")
+l_name_label.grid (row = 1, column = 0, pady = (10, 0))
+
+address_label = Label (root, text = "Address")
+address_label.grid (row = 2, column = 0, pady = (10, 0))
+
+city_label = Label (root, text = "City")
+city_label.grid (row = 3, column = 0, pady = (10, 0))
+
+state_label = Label (root, text = "State")
+state_label.grid (row = 4, column = 0, pady = (10, 0))
+
+zipcode_label = Label (root, text = "Zipcode")
+zipcode_label.grid (row = 5, column = 0, pady = (10, 0))
+
+delete_box_label = Label (root, text = "DELETE ID NUMBER")
+delete_box_label. grid (row = 9, column = 0, pady = 5) 
+
+# Create Submit Button
+# ipadx = strech the button
+submit_button = Button (root, text = "Add record to the database", command = submit)
+submit_button.grid(row = 6, column = 0, columnspan = 2, pady = 10, padx =10, ipadx = 100)
+
+# Create a Query Button
+query_btn = Button(root, text = "Show Records", command = query)
+query_btn.grid(row = 7, column =0, columnspan = 2, pady=10, padx=10, ipadx=137)
+
+# Create a delete button
+delete_btn = Button(root, text = "Delete Records", command = delete)
+delete_btn.grid(row = 10, column =0, columnspan = 2, pady=10, padx=10, ipadx=137)
+
+# Commit Changes
+conn.commit()
+
+# Close Connection
+conn.close()
+
+root.mainloop()
+
+***********************************************************************************************************************************************************************
+18. Update A record (update record.py) 
+from tkinter import *
+from PIL import ImageTk, Image
+import sqlite3
+
+root = Tk ()
+root.title ("Edison 1 students record")
+root.iconbitmap("pewds_qmL_icon.ico")
+root.geometry("400x500")
+
+# Databases
+
+# Create a database or connect to one
+conn = sqlite3.connect('address_book.db')
+
+# Create cursor
+c = conn.cursor()
+
+# Create table
+'''
+c.execute(""" CREATE TABLE addresses (
+            first_name text,
+            last_name text,
+            address text,
+            city text,
+            state text,
+            zipcode integer
+            )""")
+'''
+
+# Create update func to update record 
+def update():
+    # Create a database or connect to one
+    conn = sqlite3.connect('address_book.db')
+
+    # Create cursor
+    c = conn.cursor()
+
+    record_id = delete_box.get()
+    
+    c.execute ("""UPDATE addresses SET
+            first_name = :first,
+            last_name = :last,
+            address = :address,
+            city = :city,
+            state = :state,
+            zipcode = :zipcode
+
+            WHERE oid = :oid""",
+            {
+            'first' : f_name_editor.get(),
+            'last' : l_name_editor.get(),
+            'address' : address_editor.get(),
+            'city' : city_editor.get(),
+            'state' : state_editor.get(),
+            'zipcode' : zipcode_editor.get(),
+
+            'oid' : record_id
+            })
+
+    # Commit Changes
+    conn.commit()
+
+    # Close Connection
+    conn.close()
+
+    editor.destroy()    
+
+def edit():
+    global editor
+    editor = Tk ()
+    editor.title ("Update A Record")
+    editor.iconbitmap("pewds_qmL_icon.ico")
+    editor.geometry("400x238")
+
+    # Create a database or connect to one
+    conn = sqlite3.connect('address_book.db')
+
+    # Create cursor
+    c = conn.cursor()
+
+    record_id = delete_box.get()
+
+    #Query the database (* = all, oid = primary key (ex = when want to delete specific data that same name withother data))
+    c.execute ("SELECT * FROM addresses WHERE oid = " + record_id)
+    records = c.fetchall()
+
+    # Create Global Variable for text box name
+    global f_name_editor
+    global l_name_editor
+    global address_editor
+    global city_editor
+    global state_editor
+    global zipcode_editor
+
+    # Create textbox
+    # Entry = create text box
+    f_name_editor = Entry (editor, width = 30)
+    f_name_editor.grid( row = 0, column = 1, padx = 20, pady = (10, 0))
+
+    l_name_editor = Entry (editor, width = 30)
+    l_name_editor.grid( row = 1, column = 1, padx = 20, pady = (10, 0))
+
+    address_editor = Entry (editor, width = 30)
+    address_editor.grid( row = 2, column = 1, padx = 20, pady = (10, 0))
+
+    city_editor = Entry (editor, width = 30)
+    city_editor.grid( row = 3, column = 1, padx = 20, pady = (10, 0))
+
+    state_editor = Entry (editor, width = 30)
+    state_editor.grid( row = 4, column = 1, padx = 20, pady = (10, 5))
+
+    zipcode_editor = Entry (editor, width = 30)
+    zipcode_editor.grid( row = 5, column = 1, padx = 20, pady = (10, 0))
+
+    # Create text label
+    f_name_label = Label (editor, text = "First Name")
+    f_name_label.grid (row = 0, column = 0, pady = (10, 0))
+
+    l_name_label = Label (editor, text = "Last Name")
+    l_name_label.grid (row = 1, column = 0, pady = (10, 0))
+
+    address_label = Label (editor, text = "Address")
+    address_label.grid (row = 2, column = 0, pady = (10, 0))
+
+    city_label = Label (editor, text = "City")
+    city_label.grid (row = 3, column = 0, pady = (10, 0))
+
+    state_label = Label (editor, text = "State")
+    state_label.grid (row = 4, column = 0, pady = (10, 0))
+
+    zipcode_label = Label (editor, text = "Zipcode")
+    zipcode_label.grid (row = 5, column = 0, pady = (10, 0))
+
+    # Loop thru results
+    for record in records:
+        f_name_editor.insert (0, record[0])
+        l_name_editor.insert (0, record[1])
+        address_editor.insert (0, record[2])
+        city_editor.insert (0, record[3])
+        state_editor.insert (0, record[4])
+        zipcode_editor.insert (0, record[5])
+
+    # Create a save button
+    save_btn = Button(editor, text = "Save Records", command = update)
+    save_btn.grid(row = 6, column =0, columnspan = 2, pady=10, padx=10, ipadx=143)
+
+# Create function to Delete A record
+def delete():
+     # Create a database or connect to one
+    conn = sqlite3.connect('address_book.db')
+
+    # Create cursor
+    c = conn.cursor()
+
+    # Delete a record
+    c.execute("DELETE from addresses WHERE oid=" + delete_box.get())
+
+    delete_box.delete (0, END)
+    
+    # Commit Changes
+    conn.commit()
+
+    # Close Connection
+    conn.close()
+    
+# Create submit function for database
+def submit():
+    # Create a database or connect to one
+    conn = sqlite3.connect('address_book.db')
+
+    # Create cursor
+    c = conn.cursor()
+
+    # Insert into table
+    c.execute("INSERT INTO addresses VALUES (:f_name, :l_name, :address, :city, :state, :zipcode)",
+                {
+                    'f_name' : f_name.get(),
+                    'l_name' : l_name.get(),
+                    'address' : address.get(),
+                    'city' : city.get(),
+                    'state' : state.get(),
+                    'zipcode' : zipcode.get()
+                })
+    
+    # Commit Changes
+    conn.commit()
+
+    # Close Connection
+    conn.close()
+
+    # Clear the Text Boxes
+    f_name.delete (0, END)
+    l_name.delete (0, END)
+    address.delete (0, END)
+    city.delete (0, END)
+    state.delete (0, END)
+    zipcode.delete (0, END)
+
+# Create query func
+def query():
+    # Create a database or connect to one
+    conn = sqlite3.connect('address_book.db')
+
+    # Create cursor
+    c = conn.cursor()
+
+    #Query the database (* = all, oid = primary key (ex = when want to delete specific data that same name withother data))
+    c.execute ("SELECT *,oid FROM addresses")
+    records = c.fetchall()
+    # print (records)
+
+    # Looping Thru results
+    print_records = ' ' 
+    for record in records :
+        print_records += str(record[0]) + " " + str(record[1]) + " " + "\t" + str(record[6]) + "\n" 
+
+    query_label = Label(root, text = print_records)
+    query_label.grid(row=12, column= 0, columnspan = 2)
+    
+    # Commit Changes
+    conn.commit()
+
+    # Close Connection
+    conn.close()
+
+# Create textbox
+# Entry = create text box
+f_name = Entry (root, width = 30)
+f_name.grid( row = 0, column = 1, padx = 20, pady = (10, 0))
+
+l_name = Entry (root, width = 30)
+l_name.grid( row = 1, column = 1, padx = 20, pady = (10, 0))
+
+address = Entry (root, width = 30)
+address.grid( row = 2, column = 1, padx = 20, pady = (10, 0))
+
+city = Entry (root, width = 30)
+city.grid( row = 3, column = 1, padx = 20, pady = (10, 0))
+
+state = Entry (root, width = 30)
+state.grid( row = 4, column = 1, padx = 20, pady = (10, 5))
+
+zipcode = Entry (root, width = 30)
+zipcode.grid( row = 5, column = 1, padx = 20, pady = (10, 0))
+
+delete_box = Entry (root, width = 30)
+delete_box. grid (row = 9, column = 1, pady = 5) 
+
+# Create text label
+f_name_label = Label (root, text = "First Name")
+f_name_label.grid (row = 0, column = 0, pady = (10, 0))
+
+l_name_label = Label (root, text = "Last Name")
+l_name_label.grid (row = 1, column = 0, pady = (10, 0))
+
+address_label = Label (root, text = "Address")
+address_label.grid (row = 2, column = 0, pady = (10, 0))
+
+city_label = Label (root, text = "City")
+city_label.grid (row = 3, column = 0, pady = (10, 0))
+
+state_label = Label (root, text = "State")
+state_label.grid (row = 4, column = 0, pady = (10, 0))
+
+zipcode_label = Label (root, text = "Zipcode")
+zipcode_label.grid (row = 5, column = 0, pady = (10, 0))
+
+delete_box_label = Label (root, text = "SELECT ID NUMBER")
+delete_box_label. grid (row = 9, column = 0, pady = 5) 
+
+# Create Submit Button
+# ipadx = strech the button
+submit_button = Button (root, text = "Add record to the database", command = submit)
+submit_button.grid(row = 6, column = 0, columnspan = 2, pady = 10, padx =10, ipadx = 100)
+
+# Create a Query Button
+query_btn = Button(root, text = "Show Records", command = query)
+query_btn.grid(row = 7, column =0, columnspan = 2, pady=10, padx=10, ipadx=137)
+
+# Create a delete button
+delete_btn = Button(root, text = "Delete Records", command = delete)
+delete_btn.grid(row = 10, column =0, columnspan = 2, pady=10, padx=10, ipadx=137)
+
+# Create an update button
+edit_btn = Button(root, text = "Edit Records", command = edit)
+edit_btn.grid(row = 11, column =0, columnspan = 2, pady=10, padx=10, ipadx=143)
+
+# Commit Changes
+conn.commit()
+
+# Close Connection
+conn.close()
+
+root.mainloop()
+
+***********************************************************************************************************************************************************************
+19. Build Weather App (weather app.py) ( video = 4 : 42 : 57) (Website = https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=42069&distance=69&API_KEY=E3FF01A3-B9A2-4315-957B-A78A2E1C049E)
+from tkinter import *
+from PIL import ImageTk, Image
+import requests
+import json
+
+root = Tk ()
+root.title ("My weather app")
+root.iconbitmap("pewds_qmL_icon.ico")
+root.geometry("400x40")
+root.configure (background = 'green')
+
+# https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=42069&distance=69&API_KEY=E3FF01A3-B9A2-4315-957B-A78A2E1C049E
+
+try:
+    api_request = requests.get("https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=42069&distance=69&API_KEY=E3FF01A3-B9A2-4315-957B-A78A2E1C049E")
+    api = json.loads (api_request.content)
+    city = api[0]['ReportingArea']
+    quality = api[0]['AQI']
+    category = api[0]['Category']['Name']
+except Exception as e:
+    api = "Error..."
+
+# 4 : 58
+myLabel = Label(root, text=city + ", Air Quality = " + str(quality) + " / Category = " + category, font=("Patrick Hand", 16), background = "green")
+myLabel.pack()
+
+root.mainloop()
+
+***********************************************************************************************************************************************************************
+20. Change colors in our weather app
+from tkinter import *
+from PIL import ImageTk, Image
+import requests
+import json
+
+root = Tk ()
+root.title ("My weather app")
+root.iconbitmap("pewds_qmL_icon.ico")
+root.geometry("400x40")
+
+#[{"DateObserved":"2020-12-05 ","HourObserved":3,"LocalTimeZone":"CST","ReportingArea":"Austin","StateCode":"TX","Latitude":30.267,"Longitude":-97.734,"ParameterName":"O3","AQI":11,"Category":{"Number":1,"Name":"Good"}},
+#{"DateObserved":"2020-12-05 ","HourObserved":3,"LocalTimeZone":"CST","ReportingArea":"Austin","StateCode":"TX","Latitude":30.267,"Longitude":-97.734,"ParameterName":"PM2.5","AQI":103,"Category":{"Number":3,"Name":"Unhealthy for Sensitive Groups"}}]
+# https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=78736&distance=42&API_KEY=E3FF01A3-B9A2-4315-957B-A78A2E1C049E
+
+# https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=42069&distance=69&API_KEY=E3FF01A3-B9A2-4315-957B-A78A2E1C049E
+
+try:
+    api_request = requests.get("https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=78736&distance=42&API_KEY=E3FF01A3-B9A2-4315-957B-A78A2E1C049E")
+    api = json.loads (api_request.content)
+    city = api[1]['ReportingArea']
+    quality = api[1]['AQI']
+    category = api[1]['Category']['Name']
+
+# colour in hexa copied from inspect element
+# --color-super-light-grey: #e3e3e3; --color-card-border-grey: #E0E0E0; --color-silver: #C0C0C0; --color-light-grey: #D5D5D5; --color-solid-grey: #808080; --color-dark-blue: #167fac; 
+# --color-aqi-green: #00e400; --color-aqi-yellow: #ffff00; --color-aqi-orange: #ff7e00; --color-aqi-red: #ff0000; --color-aqi-purple: #99004c; --color-aqi-maroon: #7e0023;
+
+    if category == "Good":
+        weather_color = "#00e400"
+    elif category == "Moderate":
+        weather_color = "#ffff00"
+    elif category == "Unhealthy for Sensitive Groups":
+        weather_color = "#ff7e00"
+    elif category == "Unhealthy":
+        weather_color = "#ff0000"
+    elif category == "Very Unhealthy":
+        weather_color = "#99004c"
+    elif category == "Hazardous":
+        weather_color = "#7e0023"
+
+    root.configure (background=weather_color)
+    
+    myLabel = Label(root, text=city + ", Air Quality = " + str(quality) + " / Category = " + category, font=("Patrick Hand", 16), background =weather_color)
+    myLabel.pack()
+except Exception as e:
+    api = "Error..."
+
+root.mainloop()
+
+***********************************************************************************************************************************************************************
+21. Add zipcode lookup form (add zipcode lookup form.py) 5:16:35 
+from tkinter import *
+from PIL import ImageTk, Image
+import requests
+import json
+
+root = Tk ()
+root.title ("My weather app")
+root.iconbitmap("pewds_qmL_icon.ico")
+root.geometry("400x75")
+
+# Create zipcode lookup function
+def ziplookup():
+    #zip.get()
+    #zipLabel = Label(root, text = zip.get())
+    #zipLabel.grid(row = 1, column = 0, columnspan = 2)
+
+    try:
+        api_request = requests.get("https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=" + zip.get() + "&distance=42&API_KEY=E3FF01A3-B9A2-4315-957B-A78A2E1C049E")
+        api = json.loads (api_request.content)
+        city = api[1]['ReportingArea']
+        quality = api[1]['AQI']
+        category = api[1]['Category']['Name']
+
+    # colour in hexa copied from inspect element
+    # --color-super-light-grey: #e3e3e3; --color-card-border-grey: #E0E0E0; --color-silver: #C0C0C0; --color-light-grey: #D5D5D5; --color-solid-grey: #808080; --color-dark-blue: #167fac; 
+    # --color-aqi-green: #00e400; --color-aqi-yellow: #ffff00; --color-aqi-orange: #ff7e00; --color-aqi-red: #ff0000; --color-aqi-purple: #99004c; --color-aqi-maroon: #7e0023;
+
+        if category == "Good":
+            weather_color = "#00e400"
+        elif category == "Moderate":
+            weather_color = "#ffff00"
+        elif category == "Unhealthy for Sensitive Groups":
+            weather_color = "#ff7e00"
+        elif category == "Unhealthy":
+            weather_color = "#ff0000"
+        elif category == "Very Unhealthy":
+            weather_color = "#99004c"
+        elif category == "Hazardous":
+            weather_color = "#7e0023"
+
+        root.configure (background=weather_color)
+        
+        myLabel = Label(root, text=city + ", Air Quality = " + str(quality) + " / Category = " + category, font=("Patrick Hand", 16), background =weather_color)
+        myLabel.grid(row = 1, column = 0, columnspan = 2)
+    except Exception as e:
+        api = "Error..."
+
+
+
+#[{"DateObserved":"2020-12-05 ","HourObserved":3,"LocalTimeZone":"CST","ReportingArea":"Austin","StateCode":"TX","Latitude":30.267,"Longitude":-97.734,"ParameterName":"O3","AQI":11,"Category":{"Number":1,"Name":"Good"}},
+#{"DateObserved":"2020-12-05 ","HourObserved":3,"LocalTimeZone":"CST","ReportingArea":"Austin","StateCode":"TX","Latitude":30.267,"Longitude":-97.734,"ParameterName":"PM2.5","AQI":103,"Category":{"Number":3,"Name":"Unhealthy for Sensitive Groups"}}]
+# https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=78736&distance=42&API_KEY=E3FF01A3-B9A2-4315-957B-A78A2E1C049E
+
+# https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=42069&distance=69&API_KEY=E3FF01A3-B9A2-4315-957B-A78A2E1C049E
+
+zip = Entry (root)
+zip.grid(row = 0, column = 0, sticky = W+E+N+S)
+
+zipButton = Button (root, text = "Lookup Zipcode", command = ziplookup)
+zipButton.grid(row = 0, column = 1, sticky = W+E+N+S)
+
+root.mainloop()
+
+***********************************************************************************************************************************************************************
+22. Matplotlib Charts (Matplotlib Charts.py)
+from tkinter import *
+from PIL import ImageTk, Image
+import numpy as np
+import matplotlib.pyplot as plt
+
+root = Tk ()
+root.title ("We do coding yes")
+root.iconbitmap("pewds_qmL_icon.ico")
+root.geometry("400x200")
+
+#learn more about this i dono how to set custom amon this only random 00000
+#https://matplotlib.org/3.3.3/index.html
+
+def graph():
+    house_prices = np.random.normal(2000, 250, 50)
+    plt.polar(house_prices)
+    plt.show()
+
+my_button = Button (root, text = "You want see Graph men ?", command = graph)
+my_button.pack()
+
+root.mainloop()
+
+***********************************************************************************************************************************************************************
+***Basics tkinter coding layout
+from tkinter import *
+from PIL import ImageTk, Image
+
+root = Tk ()
+root.title ("We do coding yes")
+root.iconbitmap("pewds_qmL_icon.ico")
+root.geometry("400x400")
+
+# Databases
+
+
+root.mainloop()
+
+***********************************************************************************************************************************************************************
+Basics
+1. Create the things
+2. Decide how it will shown in the output 
+
+pack = keep the output where it supposed to be (ex = fixed at the middle) but we cant control the position / not fix
+grid = fixed
+
+row = kiri kanan
+column = atas bawah
+
+north = atas
+south = bawah 
+west = kiri
+east = kanan
+
+anchor = pergi dekat (cth = E ( east) = pergi ke kanan)
